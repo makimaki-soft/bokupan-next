@@ -82,6 +82,10 @@ var WelcomeScene = cc.Scene.extend({
         this._super();
         var layer = new WelcomeLayer();
         this.addChild(layer);
+        cc.audioEngine.playMusic(audio.Opening, true);
+    },
+    onExit:function(){
+        cc.audioEngine.stopMusic(audio.Opening);
     }
 });
 
