@@ -1,5 +1,7 @@
 var res = {
-    HelloWorld_png : "res/HelloWorld.png",
+    WelcomePage : "res/welcome_logo.png",
+    HomeIcon : "res/ifn0204.png",
+    Favicon : "res/favicon.png"
 };
 
 var g_resources = [];
