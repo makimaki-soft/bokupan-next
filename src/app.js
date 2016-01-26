@@ -59,6 +59,7 @@ var WelcomeLayer = cc.LayerColor.extend({
         
         var showManual_txt = new cc.MenuItemFont( msg.showManual, function(){
             var nextScene = new cc.TransitionCrossFade(0.5, new ManualScene());
+            cc.audioEngine.playEffect(audio.Click);
             cc.director.runScene(nextScene);
         }, this );
         showManual_txt.attr({fontSize : 10,
