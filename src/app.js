@@ -4,7 +4,7 @@ var WelcomeLayer = cc.LayerColor.extend({
         this._super(cc.color(255,255,255));
         var winSize = cc.winSize;
         
-        var version_txt = new cc.LabelTTF("ver 1.0.0");
+        var version_txt = new cc.LabelTTF(cc.game.config[cc.game.CONFIG_KEY.app_version]);
         version_txt.attr({
             fontSize : 10,
             x: this.width - 10,
