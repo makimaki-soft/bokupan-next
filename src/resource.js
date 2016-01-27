@@ -5,7 +5,8 @@ var res = {
 };
 
 var audio = {
-    Opening : "audio/bokupan_opening.mp3" 
+    Opening : "audio/bokupan_opening.mp3",
+    Click : "audio/effect_04_click.wav"
 };
 
 var g_resources = [];
