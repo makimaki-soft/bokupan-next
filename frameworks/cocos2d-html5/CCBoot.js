@@ -2045,6 +2045,7 @@ cc.game = /** @lends cc.game# */{
      * @type {Object}
      */
     CONFIG_KEY: {
+        app_version: "app_version",
         width: "width",
         height: "height",
         engineDir: "engineDir",
@@ -2390,6 +2391,8 @@ cc.game = /** @lends cc.game# */{
             config[CONFIG_KEY.renderMode] = 0;
         if (config[CONFIG_KEY.registerSystemEvent] == null)
             config[CONFIG_KEY.registerSystemEvent] = true;
+        if (config[CONFIG_KEY.app_version] == null)
+            config[CONFIG_KEY.app_version] = "version not found.";
 
         // Modules adjustment
         if (modules && modules.indexOf("core") < 0) modules.splice(0, 0, "core");
