@@ -1,12 +1,12 @@
 var res = {
-    WelcomePage : "res/welcome_logo.png",
-    HomeIcon : "res/ifn0204.png",
-    Favicon : "res/favicon.png"
+    WelcomePage : "res/image/welcome_logo.png",
+    HomeIcon : "res/image/ifn0204.png",
+    Favicon : "res/image/favicon.png"
 };
 
 var audio = {
-    Opening : "audio/bokupan_opening.mp3",
-    Click : "audio/effect_04_click.wav"
+    Opening : "res/audio/bokupan_opening.mp3",
+    Click : "res/audio/effect_04_click.wav"
 };
 
 var g_resources = [];
