@@ -65,6 +65,24 @@ var ManualLayer = cc.LayerColor.extend({
             
             pageView.insertPage(layout, i);
         }
+        
+        var menuLeft = new cc.MenuItemLabel(new cc.LayerColor(cc.color(0,0,0,0), 100, 200), function(){
+            pageView.scrollToPage(pageView.getCurPageIndex()-1);
+        }, this);
+        
+        var left = new cc.Menu(menuLeft);
+        left.setAnchorPoint(cc.p(0,0.5));
+        left.setPosition(cc.p(0,this.height/2));
+        this.addChild(left);
+        
+        var menuRight = new cc.MenuItemLabel(new cc.LayerColor(cc.color(0,0,0,0), 100, 200), function(){
+            pageView.scrollToPage(pageView.getCurPageIndex()+1);
+        }, this);
+        
+        var right = new cc.Menu(menuRight);
+        right.setAnchorPoint(cc.p(1,0.5));
+        right.setPosition(cc.p(this.width,this.height/2));
+        this.addChild(right);
     },
     
     pages : [
