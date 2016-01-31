@@ -5,6 +5,8 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
     _margin:5,
     _fontColor:cc.color(0,0,0),
     _tableLineColor:cc.color(128,128,128),
+    _headerFontColor:cc.color(169, 68, 66),
+    _headerUnderLineColor:cc.color(169, 68, 66),
     
     ctor: function () {
         ccui.Layout.prototype.ctor.call(this); // super
@@ -25,14 +27,34 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
     },
     
     header : function(_string){
-        var text = new cc.LabelTTF(_string);
+        var self = this;
+        var text = new cc.LabelTTF("◯"+_string);
         text.setDimensions(cc.size(this.width,0));
         text.setAnchorPoint(cc.p(0,1));
         text.setPosition(cc.p(0,this.height-this._usedHeight));
-        text.setColor(this._fontColor);
+        text.setColor(this._headerFontColor);
         
-        this._usedHeight += text.height + this._margin;
+        this._usedHeight += text.height;
         this.addChild(text);
+        
+        var drowDashLine = function(_startX, _endX, height){
+            var lineWidth = 0.5;
+            var lineColor = self._headerUnderLineColor;
+            var dashWidth = 4;
+            var space = 3;
+            
+            for(var posX = _startX ; posX < _endX ; posX += dashWidth ){
+                
+                var node = cc.DrawNode.create();
+                node.drawSegment(cc.p(posX, height) , cc.p(posX+dashWidth, height), lineWidth, lineColor);
+                self.addChild(node);
+                posX += space;
+            }
+            self._usedHeight += self._margin;
+        };
+        
+        drowDashLine(0, this.width, this.height-this._usedHeight);
+        
         return text;
     },
     
