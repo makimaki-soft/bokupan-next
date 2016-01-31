@@ -16,6 +16,7 @@
         "src/resource.js",
         "src/app.js",
         "src/message.js",
+        "src/ManualScene/layout.js",
         "src/ManualScene/showManualScene.js"
     ]
 }
