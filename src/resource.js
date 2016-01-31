@@ -8,7 +8,8 @@ var res = {
     Girl : "res/image/people.png",
     Ajito : "res/image/ajito.png",
     Police : "res/image/police.png",
-    Arrow : "res/image/arrowsign.png"
+    Arrow : "res/image/arrowsign.png",
+    Status : "res/image/status.png"
 };
 
 var audio = {

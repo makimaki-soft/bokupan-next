@@ -1,5 +1,11 @@
 var mkmk = mkmk || {};
 
+mkmk.webLayout = {
+    ALIGNMENT_CENTER    : "ALIGNMENT_CENTER",
+    ALIGNMENT_LEFT      : "ALIGNMENT_LEFT",
+    ALIGNMENT_RIGHT     : "ALIGNMENT_RIGHT"
+};
+
 mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
     _usedHeight:0,
     _margin:5,
@@ -12,7 +18,6 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
         ccui.Layout.prototype.ctor.call(this); // super
         this._usedHeight = this._margin;
     },
-    
     
     write: function(_string){
         var text = new cc.LabelTTF(_string);
@@ -69,15 +74,28 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
         return text;
     },
     
-    addImage : function(_image, _scaleX, _scaleY){
+    addImage : function(_image, _alignment, _scaleX, _scaleY){
         var imageView = ccui.ImageView.create(_image);
         var height = imageView.height;
         if( _scaleX || _scaleY ){
             imageView.setScale( _scaleX, _scaleY );
             height *= _scaleY ? _scaleY : _scaleX;
         } 
-        imageView.setAnchorPoint(cc.p(0.5,1));
-        imageView.setPosition(cc.p(this.width/2,this.height-this._usedHeight));
+        
+        switch(_alignment){
+            case mkmk.webLayout.ALIGNMENT_LEFT:
+                imageView.setAnchorPoint(cc.p(0,1));
+                imageView.setPosition(cc.p(this._margin,this.height-this._usedHeight));
+                break;
+            case mkmk.webLayout.ALIGNMENT_RIGHT:
+                imageView.setAnchorPoint(cc.p(1,1));
+                imageView.setPosition(cc.p(this.width-this._margin,this.height-this._usedHeight));
+                break;
+            default :
+                imageView.setAnchorPoint(cc.p(0.5,1));
+                imageView.setPosition(cc.p(this.width/2,this.height-this._usedHeight));
+                break;
+        }
         
         this._usedHeight += height + this._margin;
         this.addChild(imageView);

@@ -79,28 +79,39 @@ var ManualLayer = cc.LayerColor.extend({
             this.footer("1");
         },
         function(){
-            this.header("画面の見方");
-            this.addImage(res.Screen, 0.25);
+            this.header("画面の見方(1/2)");
+            this.addImage(res.Screen, mkmk.webLayout.ALIGNMENT_CENTER, 0.6);
             this.write("マップ これが今回のコンテスト会場です（マップ全体の絵） ターゲットとなる家は９つあります。");
+            this.footer("2");
+        },
+        function(){
+            this.header("画面の見方(2/2)");
             this.item("プレイヤーのアイコンです。プレイヤー毎に色が違います。", res.Koma);
             this.item("家です。", res.House);
             this.item("家に住人がいる場合、住人アイコンが表示されます。", res.Girl);
             this.item("アイコンと同じ色が自分の拠点です。自分の拠点に帰るまでがパンツコンテンストです。", res.Ajito);
             this.item("巡回中の警察官です。見つかると・・・。", res.Police);
             this.item("巡回ルートを示す看板（矢印）がです。警察官は矢印に従って巡回します。", res.Arrow);
-            this.footer("2");
+            this.addImage(res.Status, mkmk.webLayout.ALIGNMENT_LEFT, 0.6);
+            this.write("ステータス画面です。");
+            this.write("① ぽっけにいれているパンツ");
+            this.write("② 拠点に持ち帰ったパンツ");
+            this.write("③ コンテスト主催者から配られたアイテム。紳士に奇跡を起こします。");
+            this.footer("3");
         },
         function(){
             this.header("ゲームの流れ");
             this.write("ゲームは各プレイヤーが順に行動を行うターン制です。 全区画の住人のパンツを1番最初にすべて集めたプレイヤーが勝ちです。 警察官に捕まらないように移動したり、警察官の進行方向を変えて戦います。");
-            this.footer("3");
+            
+       
+            
+            this.footer("4");
         },
         function(){
             this.header("逮捕について");
             this.write("パンツを持った状態で警官とすれ違うか、住人と出くわした場合は逮捕となり、手持ちのパンツをすべて破棄して自分の拠点に戻ります。 逮捕されずに自分の拠点までパンツを持って帰ることで、パンツをポケットからコレクションにしまうことができます。 拠点は警察官の巡回ルーツに含まれていません。ライバルの拠点に入ることはできますが、コレクションには加わりません。");
-            this.footer("4");
-        },
-        function(){
+            this.brank(15);
+       
             this.header("コンテストの終了について");
             this.write("すべての家のパンツを最初にコレクションに加えたプレイヤーの勝利となり、コンテンストの終了となります。");
             this.footer("5");
