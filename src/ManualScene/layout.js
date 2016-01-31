@@ -186,7 +186,7 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
         this.addChild(node);
         this.addChild(text);
         
-        var posY = this.height - this._usedHeight - text.height;
+        var posY = this.height - this._usedHeight - text.height-this._margin;
         this._usedHeight += text.height + this._margin*2;
         
         this._offset = this._margin*2;
