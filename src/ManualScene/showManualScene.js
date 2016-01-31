@@ -70,6 +70,7 @@ var ManualLayer = cc.LayerColor.extend({
     pages : [
         function(){
             this.header("概要");
+            this.brank(15);
             this.table([
                 ["タイトル", "僕がパンツを好きになった理由"],
                 ["対象年齢", "良識のある15歳以上"],
@@ -100,12 +101,53 @@ var ManualLayer = cc.LayerColor.extend({
             this.footer("3");
         },
         function(){
-            this.header("ゲームの流れ");
+            this.header("ゲームの流れ(1/2)");
             this.write("ゲームは各プレイヤーが順に行動を行うターン制です。 全区画の住人のパンツを1番最初にすべて集めたプレイヤーが勝ちです。 警察官に捕まらないように移動したり、警察官の進行方向を変えて戦います。");
             
-       
-            
+            this.innerLayout("1. ターンの開始",function(){
+                this.write("ターンの最初に、マップに以下のいずれかの変更が起こります。");
+                this.write("    - 警察官の移動");
+                this.write("    - 住人の帰宅");
+                this.write("警察官の移動について");
+                this.write("サイコロを２個振り、出た目の合計分、進行方向に進みます。 T字路では矢印の方向に進行方向を変えます。");
+
+                this.write("住人の帰宅について");
+                this.write("ランダムで住人がでかけたり、帰宅したりします。");
+            });
             this.footer("4");
+        },
+        function(){
+            this.header("ゲームの流れ(2/2)");
+            this.innerLayout("2. プレイヤーの行動", function(){
+            
+                this.write("各プレイヤは自分の番に、次のうちどれかを２回行わなければなりません。");
+
+                this.write("    - 移動する");
+                this.write("    - パンツを得る");
+                this.write("    - 巡回ルートの矢印の向きを変える");
+                this.write("    - アイテムを使う");
+                this.write("移動する");
+                this.write("ひとつ隣のマスに移動します。");
+
+                this.write("パンツを得る");
+                this.write("プレイヤは家の前にいるときパンツを得ることができます。ただし、「家に住人がいるとき」、「自分がその家のパンツを持っているとき」はこの行動をすることができません。");
+
+                this.write("巡回ルートの矢印の向きを変える");
+                this.write("プレイヤは矢印の前にいるとき矢印の向きをかえることができます。変えるときは必ず別の方向に変えなければなりません。");
+
+                this.write("アイテムを使う");
+                this.write("プレイヤはコンテスト中に以下のアイテムをそれぞれ一回ずつ使用することができます。");
+
+                this.write("    - 警察官に巡回させる");
+                this.write("    - ランダムに住人を帰宅させる");
+                this.write("    - 巡回ルートの矢印の向きを時計回りに１つずつ回す");
+            });
+            
+            this.innerLayout("3. ターンの終了",function(){
+                this.write("全プレーヤの行動が終わると１ターンが終了です。");
+            });
+            
+            this.footer("5");
         },
         function(){
             this.header("逮捕について");
@@ -114,7 +156,7 @@ var ManualLayer = cc.LayerColor.extend({
        
             this.header("コンテストの終了について");
             this.write("すべての家のパンツを最初にコレクションに加えたプレイヤーの勝利となり、コンテンストの終了となります。");
-            this.footer("5");
+            this.footer("6");
         }
     ]
 });

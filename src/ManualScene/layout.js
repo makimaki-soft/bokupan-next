@@ -13,18 +13,24 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
     _tableLineColor:cc.color(128,128,128),
     _headerFontColor:cc.color(169, 68, 66),
     _headerUnderLineColor:cc.color(169, 68, 66),
+    _innerTitleColor:cc.color(49, 112, 143),
+    _innerFillColor:cc.color(217, 237, 247),
+    _innerLineColor:cc.color(188, 232, 241),
+    _offset : 0,
+    _fontSize : 12,
     
     ctor: function () {
         ccui.Layout.prototype.ctor.call(this); // super
         this._usedHeight = this._margin;
     },
     
-    write: function(_string){
+    write: function(_string ){
         var text = new cc.LabelTTF(_string);
-        text.setDimensions(cc.size(this.width,0));
+        text.setDimensions(cc.size(this.width-this._offset,0));
         text.setAnchorPoint(cc.p(0,1));
-        text.setPosition(cc.p(0,this.height-this._usedHeight));
+        text.setPosition(cc.p(this._offset,this.height-this._usedHeight));
         text.setColor(this._fontColor);
+        text.setFontSize(this._fontSize);
         
         this._usedHeight += text.height + this._margin;
         this.addChild(text);
@@ -114,6 +120,7 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
         text.setAnchorPoint(cc.p(0,1));
         text.setPosition(cc.p(iconSize+this._margin,this.height-this._usedHeight));
         text.setColor(this._fontColor);
+        text.setFontSize(this._fontSize);
         
         this._usedHeight += Math.max(iconSize, text.height) + this._margin;
         
@@ -162,6 +169,43 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
             posX += _colWidths[i];
             drowLine(cc.p(posX,firstPosY), cc.p(posX,height));
         }
+    },
+    
+    innerLayout(_string, _inner){
+        var self = this;
+        var text = new cc.LabelTTF(_string);
+        text.setDimensions(cc.size(this.width,0));
+        text.setAnchorPoint(cc.p(0,1));
+        text.setPosition(cc.p(this._margin*2,this.height-this._usedHeight-this._margin));
+        text.setColor(this._innerTitleColor);
+        
+        var node = cc.DrawNode.create();
+        node.drawRect(cc.p(this._margin, this.height-this._usedHeight), 
+                      cc.p(this.width-this._margin, this.height-this._usedHeight-text.height-this._margin), 
+                      this._innerFillColor, 0.5, this._innerLineColor);
+        this.addChild(node);
+        this.addChild(text);
+        
+        var posY = this.height - this._usedHeight - text.height;
+        this._usedHeight += text.height + this._margin*2;
+        
+        this._offset = this._margin*2;
+        _inner.call(this);
+        this._offset = 0;
+        
+        var drowLine = function(_start, _end){
+            var lineWidth = 0.5;
+            var lineColor = self._innerLineColor;
+            var node = cc.DrawNode.create();
+            node.drawSegment(_start,_end, lineWidth, lineColor);
+            self.addChild(node);
+        };
+        
+        drowLine(cc.p(this._margin,  posY), cc.p(this._margin,  this.height-this._usedHeight));
+        drowLine(cc.p(this.width-this._margin,  posY), cc.p(this.width-this._margin,  this.height-this._usedHeight));
+        drowLine(cc.p(this._margin,  this.height-this._usedHeight), cc.p(this.width-this._margin,  this.height-this._usedHeight));
+        
+        this._usedHeight += this._margin;
     },
     
     brank : function(_height){
