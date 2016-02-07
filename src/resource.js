@@ -9,7 +9,9 @@ var res = {
     Ajito : "res/image/ajito.png",
     Police : "res/image/police.png",
     Arrow : "res/image/arrowsign.png",
-    Status : "res/image/status.png"
+    Status : "res/image/status.png",
+    MainMap : "res/image/map_ver5.png",
+    Grey : "res/image/grey.png"
 };
 
 var audio = {

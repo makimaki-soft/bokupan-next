@@ -14,9 +14,15 @@
 
     "jsList" : [
         "src/resource.js",
+        "src/utility.js",
         "src/app.js",
         "src/message.js",
         "src/ManualScene/layout.js",
-        "src/ManualScene/showManualScene.js"
+        "src/ManualScene/showManualScene.js",
+        "src/MakeRoomScene/makeRoom.js",
+        "src/MakeRoomScene/roomList.js",
+        "src/MainScene/position.js",
+        "src/MainScene/mainScene.js",
+        "src/MainScene/mainMapLayer.js"
     ]
 }

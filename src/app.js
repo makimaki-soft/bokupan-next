@@ -39,7 +39,9 @@ var WelcomeLayer = cc.LayerColor.extend({
         var subLayer1 = new cc.LayerColor(cc.color(51, 122, 183),150,30);
         subLayer1.setPosition(cc.p(this.width/2-subLayer1.width/2,this.height/2));
         var startGame_txt = new cc.MenuItemFont( msg.startGame, function(){
-            
+            var nextScene = new cc.TransitionCrossFade(0.5, new RoomListScene());
+            cc.audioEngine.playEffect(audio.Click);
+            cc.director.runScene(nextScene);
         }, this);
         startGame_txt.attr({fontSize : 10,
                             x:subLayer1.width/2,

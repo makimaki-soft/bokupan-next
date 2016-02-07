@@ -16,7 +16,7 @@ var LinkMenulLayer = cc.LayerColor.extend({
         });
         
         var menuRoom = new cc.MenuItemFont( msg.startGame, function(){
-            var nextScene = cc.TransitionCrossFade.create(0.5, new WelcomeScene());
+            var nextScene = cc.TransitionCrossFade.create(0.5, new RoomListScene());
             cc.director.runScene(nextScene);
         });
         
