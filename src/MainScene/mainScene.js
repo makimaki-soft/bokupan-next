@@ -8,9 +8,6 @@ var BokupanMainScene = cc.Scene.extend({
         this._super();
         var winSize = cc.winSize;
         
-       
-        
-        
          // define layers
         this.layers = (function(){
             var mapLayer = new MainMapLayer();
@@ -30,7 +27,7 @@ var BokupanMainScene = cc.Scene.extend({
             mkmk.phases[key].attr({ layers : this.layers });
         }
         
-        this.layers.mapLayer.setPlayerIcon(addr.HOME[1]);
-        mkmk.phases.playerPhase.onEnter();
+        this.layers.mapLayer.setPlayerIcon(addr.HOME["1"]);
+        mkmk.phases["playerPhase"].onEnter();
     }
 });

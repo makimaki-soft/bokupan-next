@@ -1,4 +1,4 @@
-mkmk.phases.playerPhase.attr({
+mkmk.phases["playerPhase"].attr({
        
    /**
     * playerPhaseの開始処理
@@ -8,7 +8,7 @@ mkmk.phases.playerPhase.attr({
        cc.log("onEnter Player Phase");
        var mapLayer = this.layers.mapLayer;
        
-       mkmk.phases.actionChoicePhase.onEnter();
+       mkmk.phases["actionChoicePhase"].onEnter();
     }
     
     /**

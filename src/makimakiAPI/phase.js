@@ -73,7 +73,7 @@ mkmk.initPhases = function(){
     mkmk.Phase.prototype.playCnt = mkmk.turnCnt;
 
     var phase = {};
-    var list = mkmk.phaseList.list;
+    var list = mkmk.phaseList["list"];
 
     for(var key in list) {
         phase[list[key]] = new mkmk.Phase(list[key]);

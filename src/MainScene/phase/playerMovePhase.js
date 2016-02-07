@@ -1,4 +1,4 @@
-mkmk.phases.playerMovePhase.attr({
+mkmk.phases["playerMovePhase"].attr({
     
     onEnter : function(){
         cc.log("onEnter player Move Phase");
@@ -6,7 +6,7 @@ mkmk.phases.playerMovePhase.attr({
         
         mapLayer.setOnTouchEndedCallback(function(){
             mapLayer.removeIconTouchEvent();
-            mkmk.phases.actionChoicePhase.onEnter();
+            mkmk.phases["actionChoicePhase"].onEnter();
         }, this);
     },
         
