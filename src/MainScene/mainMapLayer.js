@@ -4,6 +4,10 @@
  * @extends cc.Layer
  */
 var MainMapLayer = cc.Layer.extend({
+    
+    _onTouchBeganCallback : null,
+    _onTouchEndedCallback : null,
+    
     ctor:function () {
         this._super();
         var self = this;
@@ -79,16 +83,48 @@ var MainMapLayer = cc.Layer.extend({
     },
     
     /**
+     * set onTouchBegan callback function.
+     * @param {function} _callback - callback function.
+     * @param {Object} _target - target of callback function.
+     */
+    setOnTouchBeganCallback : function(_callback, _target){
+        if( _callback instanceof Function ){
+            this._onTouchBeganCallback = {
+                func   : _callback, 
+                target : _target
+            };
+        }
+    },
+    
+    /**
+     * set onTouchEnded callback function.
+     * @param {function} _callback - callback function.
+     * @param {Object} _target - target of callback function.
+     */
+    setOnTouchEndedCallback : function(_callback, _target){
+        if( _callback instanceof Function ){
+            this._onTouchEndedCallback = {
+                func   : _callback, 
+                target : _target
+            };
+        }
+    },
+    
+    /**
      * start listener of the event users move thier own icon.
      */
     startIconTouchEvent : function(){
-        this._iconTouchEvent = cc.EventListener.create(this._touchEventIconMove);
+        cc.log("startIconTouchEvent");
+        if(!this._iconTouchEvent){
+            this._iconTouchEvent = cc.EventListener.create(this._touchEventIconMove);
+        }
         cc.eventManager.addListener(this._iconTouchEvent, this.getChildByName("playerIcon1"));
     },
     /**
      * remove listener of the event users move thier own icon.
      */
     removeIconTouchEvent : function(){
+        cc.log("removeIconTouchEvent");
         cc.eventManager.removeListener(this._iconTouchEvent );
     },
     
@@ -108,6 +144,10 @@ var MainMapLayer = cc.Layer.extend({
             
             if( mkmk.util.getDistance(target.getPosition(), touch.getLocation()) > 20 ){
                 return false;
+            }
+            
+            if( parent._onTouchBeganCallback ){
+                parent._onTouchBeganCallback.func.call(parent._onTouchBeganCallback.target);
             }
             
             target.setOpacity(128);
@@ -149,14 +189,20 @@ var MainMapLayer = cc.Layer.extend({
         onTouchEnded : function (touch, event) {
             var target = event.getCurrentTarget();
             var parent = target.getParent();
+            
             target.stopAllActions()
             target.setOpacity(255);
             target.setRotation(0);
             target.setPosition(closestPos(touch.getLocation()));
             
-            	
             parent.locus.unscheduleUpdate();
             parent.removeChild(parent.locus);
+            
+            if( parent._onTouchEndedCallback ){
+                parent.scheduleOnce(function(){
+                    parent._onTouchEndedCallback.func.call(parent._onTouchEndedCallback.target);
+                });
+            }
             
             return false;
         },

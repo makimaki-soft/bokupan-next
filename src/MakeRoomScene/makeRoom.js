@@ -99,10 +99,6 @@ var MakeRoomLayer = cc.LayerColor.extend({
         var form2 = this.getChildByName("form2");
         var form3 = this.getChildByName("form3");
         
-        cc.log("form1", form1.getString());
-        cc.log("form2", form2.getString());
-        cc.log("form3", form3.getString());
-        
         var nextScene = cc.TransitionCrossFade.create(0.5, new BokupanMainScene());
         cc.director.runScene(nextScene);
     }

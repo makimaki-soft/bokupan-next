@@ -17,12 +17,19 @@
         "src/utility.js",
         "src/app.js",
         "src/message.js",
+        "src/makimakiAPI/phase.js",
         "src/ManualScene/layout.js",
         "src/ManualScene/showManualScene.js",
         "src/MakeRoomScene/makeRoom.js",
         "src/MakeRoomScene/roomList.js",
         "src/MainScene/position.js",
+        "src/MainScene/phases.js",
         "src/MainScene/mainScene.js",
-        "src/MainScene/mainMapLayer.js"
+        "src/MainScene/mainMapLayer.js",
+        "src/MainScene/phase/playerPhase.js",
+        "src/MainScene/phase/actionChoicePhase.js",
+        "src/MainScene/phase/playerMovePhase.js"
+     
+        
     ]
 }
