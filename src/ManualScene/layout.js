@@ -171,7 +171,7 @@ mkmk.WebLayout = ccui.Layout.extend(/** @lends ccui.Layout# */{
         }
     },
     
-    innerLayout(_string, _inner){
+    innerLayout : function(_string, _inner){
         var self = this;
         var text = new cc.LabelTTF(_string);
         text.setDimensions(cc.size(this.width,0));
